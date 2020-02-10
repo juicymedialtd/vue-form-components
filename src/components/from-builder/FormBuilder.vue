@@ -190,7 +190,8 @@ export default {
       this.$emit('action', { type: e, form: this.$refs.form })
     },
     generateId (label) {
-      return label.replace(/\s+/g, '')
+      if (label) return label.replace(/\s+/g, '')
+      return ''
     }
   }
 }
