@@ -10,6 +10,7 @@
       <vue-form-item
         v-for="(field, index) in schema.fields"
         :key="field.label + index"
+        :item-id="generateId(field.label + index)"
         :label="field.label"
         :field="field.model"
         :class="field.class"
@@ -23,6 +24,7 @@
             :ref="field.name"
             v-model="clonedModel[field.model]"
             v-validate="field.validate"
+            :item-id="generateId(field.label + index)"
             :type="field.inputType"
             :name="field.name"
             :readonly="field.readonly"
@@ -36,6 +38,7 @@
           <vue-select
             v-model="clonedModel[field.model]"
             v-validate="field.validate"
+            :item-id="generateId(field.label + index)"
             :data="field.options"
             :name="field.name"
             :placeholder="field.placeholder"
@@ -142,11 +145,13 @@ export default {
   props: {
     model: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     schema: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     options: {
       type: Object,
@@ -183,6 +188,9 @@ export default {
     },
     onAction (e) {
       this.$emit('action', { type: e, form: this.$refs.form })
+    },
+    generateId (label) {
+      return label.replace(/\s+/g, '')
     }
   }
 }

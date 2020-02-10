@@ -13,22 +13,23 @@
       v-if="$slots.prefix && type !== 'textarea'"
       class="vue-input__prefix"
     >
-      <slot name="prefix" />
+      <slot name="prefix"/>
     </div>
     <div
       v-if="$slots.suffix && type !== 'textarea'"
       class="vue-input__suffix"
     >
-      <slot name="suffix" />
+      <slot name="suffix"/>
     </div>
     <div
       v-if="$slots.prepend && type !== 'textarea'"
       class="vue-input__prepend"
     >
-      <slot name="prepend" />
+      <slot name="prepend"/>
     </div>
     <input
       v-if="type !== 'textarea'"
+      :id="itemId"
       :name="name"
       :type="type"
       :value="value"
@@ -43,6 +44,7 @@
     >
     <textarea
       v-else
+      :id="itemId"
       :name="name"
       :type="type"
       :placeholder="placeholder"
@@ -57,7 +59,7 @@
       v-if="this.$slots.append && type !== 'textarea'"
       class="vue-input__append"
     >
-      <slot name="append" />
+      <slot name="append"/>
     </div>
   </div>
 </template>
@@ -81,6 +83,11 @@ export default {
   },
 
   props: {
+    itemId: {
+      type: String,
+      required: false,
+      default: ''
+    },
     type: {
       type: String,
       default: 'text'
@@ -132,116 +139,131 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../scss/variables';
-@import '../../scss/mixins';
+  @import '../../scss/variables';
+  @import '../../scss/mixins';
 
-.vue-input {
-  $r: &;
-  display: inline-block;
-  position: relative;
-  font-family: $font;
-  font-size: $input-font-size;
-  width: 100%;
-  &__inner {
+  .vue-input {
+    $r: &;
+    display: inline-block;
     position: relative;
+    font-family: $font;
+    font-size: $input-font-size;
     width: 100%;
-    @include form-input-default();
-    &[disabled] {
-      cursor: no-drop;
-      background-color: $color-grey-light;
+
+    &__inner {
+      position: relative;
+      width: 100%;
+      @include form-input-default();
+
+      &[disabled] {
+        cursor: no-drop;
+        background-color: $color-grey-light;
+      }
+
+      &[type='number'] {
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+        }
+      }
     }
-    &[type='number'] {
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
+
+    &__prefix,
+    &__suffix {
+      color: $color-text-regular;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    &__prefix {
+      left: 0;
+    }
+
+    &__suffix {
+      right: 0;
+    }
+
+    &__prepend {
+      display: table-cell;
+      border-left: $input-border;
+      border-top: $input-border;
+      border-bottom: $input-border;
+      color: $color-text-faded-low;
+      padding: $input-inner-padding;
+      border-top-left-radius: $input-border-radius;
+      border-bottom-left-radius: $input-border-radius;
+      background-color: $color-grey-light;
+      position: relative;
+      width: 1px;
+      white-space: nowrap;
+    }
+
+    &__append {
+      display: table-cell;
+      border-top: $input-border;
+      border-right: $input-border;
+      border-bottom: $input-border;
+      border-top-right-radius: $input-border-radius;
+      border-bottom-right-radius: $input-border-radius;
+      padding: $input-inner-padding;
+      color: $color-text-faded-low;
+      background-color: $color-grey-light;
+      position: relative;
+      width: 1px;
+      white-space: nowrap;
+    }
+
+    &--prefix {
+      #{$r}__inner {
+        padding-left: 40px;
+      }
+    }
+
+    &--suffix {
+      #{$r}__inner {
+        padding-right: 40px;
+      }
+    }
+
+    &--prepend {
+      display: inline-table;
+      border-collapse: separate;
+
+      #{$r}__inner {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    &--append {
+      display: inline-table;
+      border-collapse: separate;
+
+      #{$r}__inner {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
       }
     }
   }
-  &__prefix,
-  &__suffix {
-    color: $color-text-regular;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-  }
-  &__prefix {
-    left: 0;
-  }
-  &__suffix {
-    right: 0;
-  }
-  &__prepend {
-    display: table-cell;
-    border-left: $input-border;
-    border-top: $input-border;
-    border-bottom: $input-border;
-    color: $color-text-faded-low;
-    padding: $input-inner-padding;
-    border-top-left-radius: $input-border-radius;
-    border-bottom-left-radius: $input-border-radius;
-    background-color: $color-grey-light;
-    position: relative;
-    width: 1px;
-    white-space: nowrap;
-  }
-  &__append {
-    display: table-cell;
-    border-top: $input-border;
-    border-right: $input-border;
-    border-bottom: $input-border;
-    border-top-right-radius: $input-border-radius;
-    border-bottom-right-radius: $input-border-radius;
-    padding: $input-inner-padding;
-    color: $color-text-faded-low;
-    background-color: $color-grey-light;
-    position: relative;
-    width: 1px;
-    white-space: nowrap;
-  }
-  &--prefix {
-    #{$r}__inner {
-      padding-left: 40px;
-    }
-  }
-  &--suffix {
-    #{$r}__inner {
-      padding-right: 40px;
-    }
-  }
-  &--prepend {
-    display: inline-table;
-    border-collapse: separate;
-    #{$r}__inner {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-  &--append {
-    display: inline-table;
-    border-collapse: separate;
-    #{$r}__inner {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-  }
-}
 
-.vue-textarea {
-  &__inner {
-    @include form-input-default();
-    padding: 5px 15px;
-    height: auto;
-    line-height: 1.5;
-    resize: vertical;
-    &[disabled] {
-      cursor: no-drop;
-      background-color: $color-grey-light;
+  .vue-textarea {
+    &__inner {
+      @include form-input-default();
+      padding: 5px 15px;
+      height: auto;
+      line-height: 1.5;
+      resize: vertical;
+
+      &[disabled] {
+        cursor: no-drop;
+        background-color: $color-grey-light;
+      }
     }
   }
-}
 </style>

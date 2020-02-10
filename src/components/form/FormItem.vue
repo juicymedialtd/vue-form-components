@@ -2,13 +2,14 @@
   <div
     class="vue-form__item"
   >
-    <div
+    <label
       v-if="label || form.labelPosition !== 'top'"
+      :for="itemId"
       :style="{'flex-basis': form.labelWidth }"
       class="vue-form__item-label"
     >
       {{ label }}
-    </div>
+    </label>
     <div class="vue-form__item-content">
       <slot />
       <transition name="form-slide-fade">
@@ -30,6 +31,11 @@ export default {
   inject: ['form'],
 
   props: {
+    itemId: {
+      type: String,
+      required: false,
+      default: ''
+    },
     label: {
       type: String,
       default: ''

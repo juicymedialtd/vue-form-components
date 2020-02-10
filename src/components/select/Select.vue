@@ -52,7 +52,7 @@
     <vue-input
       ref="input"
       v-model="selected.label"
-
+      :item-id="itemId"
       :readonly="true"
       :placeholder="computedPlaceholder"
       :disabled="disabled"
@@ -122,6 +122,11 @@ export default {
   },
 
   props: {
+    itemId: {
+      type: String,
+      required: false,
+      default: ''
+    },
     data: {
       type: Array,
       default: () => []
@@ -238,6 +243,7 @@ export default {
       if (this.showPopper) this.showPopper = false
     },
     onClosePopper2 () {
+      // eslint-disable-next-line
       console.warn('sss')
     },
     onEnter () {
