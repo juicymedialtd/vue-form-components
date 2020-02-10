@@ -12,6 +12,7 @@
         :key="field.label + index"
         :label="field.label"
         :field="field.model"
+        :class="field.class"
       >
         <!-- Input -->
         <template
