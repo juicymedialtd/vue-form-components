@@ -5,7 +5,7 @@
       'vue-button--success': type === 'success',
       'vue-button--warning': type === 'warning',
       'vue-button--danger': type === 'danger',
-      buttonClass
+      buttonClass: true
     }"
     :disabled="disabled"
     class="vue-button"
