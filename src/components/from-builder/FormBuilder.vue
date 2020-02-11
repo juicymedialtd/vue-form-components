@@ -100,6 +100,7 @@
             v-for="(i, idx) in field.buttons"
             :key="idx"
             :type="i.buttonType"
+            :button-class="i.class"
             @click="onAction(i.type)"
           >
             {{ i.buttonLabel }}

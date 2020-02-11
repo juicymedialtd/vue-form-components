@@ -5,6 +5,7 @@
       'vue-button--success': type === 'success',
       'vue-button--warning': type === 'warning',
       'vue-button--danger': type === 'danger',
+      buttonClass
     }"
     :disabled="disabled"
     class="vue-button"
@@ -22,6 +23,11 @@ export default {
     type: {
       type: String,
       default: 'default'
+    },
+    buttonClass: {
+      type: String,
+      default: '',
+      required: false
     },
     disabled: {
       type: Boolean,
