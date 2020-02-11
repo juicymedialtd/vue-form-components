@@ -6496,26 +6496,14 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var Input = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b03a7b88-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/button/Button.vue?vue&type=template&id=6af82a9d&
-var Buttonvue_type_template_id_6af82a9d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"vue-button",class:{
-    'vue-button--primary': _vm.type === 'primary',
-    'vue-button--success': _vm.type === 'success',
-    'vue-button--warning': _vm.type === 'warning',
-    'vue-button--danger': _vm.type === 'danger',
-    buttonClass: true
-  },attrs:{"disabled":_vm.disabled},on:{"click":function($event){return _vm.$emit('click')}}},[_vm._t("default")],2)}
-var Buttonvue_type_template_id_6af82a9d_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b03a7b88-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/button/Button.vue?vue&type=template&id=054a2177&
+var Buttonvue_type_template_id_054a2177_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"vue-button",class:_vm.classObject,attrs:{"disabled":_vm.disabled},on:{"click":function($event){return _vm.$emit('click')}}},[_vm._t("default")],2)}
+var Buttonvue_type_template_id_054a2177_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/button/Button.vue?vue&type=template&id=6af82a9d&
+// CONCATENATED MODULE: ./src/components/button/Button.vue?vue&type=template&id=054a2177&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/button/Button.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -6543,6 +6531,16 @@ var Buttonvue_type_template_id_6af82a9d_staticRenderFns = []
       type: Boolean,
       default: false
     }
+  },
+  computed: {
+    classObject: function classObject() {
+      var c = [this.buttonClass];
+      if (this.type === 'primary') c.push('vue-button--primary');
+      if (this.type === 'success') c.push('vue-button--success');
+      if (this.type === 'warning') c.push('vue-button--warning');
+      if (this.type === 'danger') c.push('vue-button--danger');
+      return c;
+    }
   }
 });
 // CONCATENATED MODULE: ./src/components/button/Button.vue?vue&type=script&lang=js&
@@ -6561,8 +6559,8 @@ var Buttonvue_type_style_index_0_lang_scss_ = __webpack_require__("999d");
 
 var Button_component = normalizeComponent(
   button_Buttonvue_type_script_lang_js_,
-  Buttonvue_type_template_id_6af82a9d_render,
-  Buttonvue_type_template_id_6af82a9d_staticRenderFns,
+  Buttonvue_type_template_id_054a2177_render,
+  Buttonvue_type_template_id_054a2177_staticRenderFns,
   false,
   null,
   null,
