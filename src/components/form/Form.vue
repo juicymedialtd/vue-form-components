@@ -1,5 +1,6 @@
 <template>
-  <div
+  <ValidationObserver
+    tag="div"
     :class="{
       'vue-form--label-left': labelPosition === 'left',
       'vue-form--label-right': labelPosition === 'right',
@@ -8,7 +9,7 @@
     class="vue-form"
   >
     <slot />
-  </div>
+  </ValidationObserver>
 </template>
 
 <script>

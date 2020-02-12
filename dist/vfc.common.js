@@ -7710,18 +7710,19 @@ var Option_component = normalizeComponent(
 )
 
 /* harmony default export */ var Option = (Option_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"45563a58-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/form/Form.vue?vue&type=template&id=ff0dfb4e&
-var Formvue_type_template_id_ff0dfb4e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-form",class:{
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"45563a58-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/form/Form.vue?vue&type=template&id=79365173&
+var Formvue_type_template_id_79365173_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ValidationObserver',{staticClass:"vue-form",class:{
     'vue-form--label-left': _vm.labelPosition === 'left',
     'vue-form--label-right': _vm.labelPosition === 'right',
     'vue-form--label-top': _vm.labelPosition === 'top',
-  }},[_vm._t("default")],2)}
-var Formvue_type_template_id_ff0dfb4e_staticRenderFns = []
+  },attrs:{"tag":"div"}},[_vm._t("default")],2)}
+var Formvue_type_template_id_79365173_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/form/Form.vue?vue&type=template&id=ff0dfb4e&
+// CONCATENATED MODULE: ./src/components/form/Form.vue?vue&type=template&id=79365173&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/form/Form.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -7773,8 +7774,8 @@ var Formvue_type_style_index_0_lang_scss_ = __webpack_require__("1e29");
 
 var Form_component = normalizeComponent(
   form_Formvue_type_script_lang_js_,
-  Formvue_type_template_id_ff0dfb4e_render,
-  Formvue_type_template_id_ff0dfb4e_staticRenderFns,
+  Formvue_type_template_id_79365173_render,
+  Formvue_type_template_id_79365173_staticRenderFns,
   false,
   null,
   null,
@@ -10493,12 +10494,12 @@ var size = {
 
 
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"45563a58-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/from-builder/FormBuilder.vue?vue&type=template&id=6797d44c&
-var FormBuildervue_type_template_id_6797d44c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-form-builder"},[_c('vue-form',{ref:"form",attrs:{"model":_vm.clonedModel,"label-position":_vm.options.labelPosition,"label-width":_vm.options.labelWidth,"data-vv-scope":"form-1"}},[_c('ValidationObserver',_vm._l((_vm.schema.fields),function(field,index){return _c('vue-form-item',{key:field.label + index,class:field.class,attrs:{"item-id":_vm.generateId(field.label + index),"label":field.label,"field":field.model}},[(field.type === 'input')?[_c('vue-input',{key:field.name + index,ref:field.name,refInFor:true,attrs:{"item-id":_vm.generateId(field.label + index),"type":field.inputType,"name":field.name,"readonly":field.readonly,"placeholder":field.placeholder,"disabled":field.disabled,"validate":field.validate},on:{"input":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}})]:_vm._e(),(field.type === 'select')?[_c('vue-select',{attrs:{"item-id":_vm.generateId(field.label + index),"data":field.options,"name":field.name,"placeholder":field.placeholder,"multiple":Array.isArray(_vm.clonedModel[field.model]),"validate":field.validate},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}},_vm._l((field.options),function(i){return _c('vue-option',{key:i.value,attrs:{"value":i.value,"label":i.label}})}),1)]:_vm._e(),(field.type === 'checkbox')?[(Array.isArray(_vm.clonedModel[field.model]))?_c('vue-checkbox-group',{attrs:{"name":field.name},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}},_vm._l((field.options),function(i){return _c('vue-checkbox',{key:i.value,attrs:{"type":field.inputType,"value":i.value,"label":i.label,"field-name":field.name,"validate":field.validate}})}),1):_c('vue-checkbox',{attrs:{"type":field.inputType,"name":field.name,"label":field.checkboxLabel,"validate":field.validate,"field-name":field.name},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}})]:_vm._e(),(field.type === 'radio')?_vm._l((field.options),function(i){return _c('vue-radio',{key:i.value,attrs:{"type":field.inputType,"name":field.name,"value":i.value,"label":i.label,"validate":field.validate},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}})}):_vm._e(),(field.type === 'actions')?_vm._l((field.buttons),function(i,idx){return _c('vue-button',{key:idx,attrs:{"type":i.buttonType,"button-class":i.class},on:{"click":function($event){return _vm.onAction(i.type)}}},[_vm._v("\n            "+_vm._s(i.buttonLabel)+"\n          ")])}):_vm._e()],2)}),1)],1)],1)}
-var FormBuildervue_type_template_id_6797d44c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"45563a58-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/from-builder/FormBuilder.vue?vue&type=template&id=40ebb58b&
+var FormBuildervue_type_template_id_40ebb58b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-form-builder"},[_c('vue-form',{ref:"form",attrs:{"model":_vm.clonedModel,"label-position":_vm.options.labelPosition,"label-width":_vm.options.labelWidth,"data-vv-scope":"form-1"}},_vm._l((_vm.schema.fields),function(field,index){return _c('vue-form-item',{key:field.label + index,class:field.class,attrs:{"item-id":_vm.generateId(field.label + index),"label":field.label,"field":field.model}},[(field.type === 'input')?[_c('vue-input',{key:field.name + index,ref:field.name,refInFor:true,attrs:{"item-id":_vm.generateId(field.label + index),"type":field.inputType,"name":field.name,"readonly":field.readonly,"placeholder":field.placeholder,"disabled":field.disabled,"validate":field.validate},on:{"input":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}})]:_vm._e(),(field.type === 'select')?[_c('vue-select',{attrs:{"item-id":_vm.generateId(field.label + index),"data":field.options,"name":field.name,"placeholder":field.placeholder,"multiple":Array.isArray(_vm.clonedModel[field.model]),"validate":field.validate},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}},_vm._l((field.options),function(i){return _c('vue-option',{key:i.value,attrs:{"value":i.value,"label":i.label}})}),1)]:_vm._e(),(field.type === 'checkbox')?[(Array.isArray(_vm.clonedModel[field.model]))?_c('vue-checkbox-group',{attrs:{"name":field.name},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}},_vm._l((field.options),function(i){return _c('vue-checkbox',{key:i.value,attrs:{"type":field.inputType,"value":i.value,"label":i.label,"field-name":field.name,"validate":field.validate}})}),1):_c('vue-checkbox',{attrs:{"type":field.inputType,"name":field.name,"label":field.checkboxLabel,"validate":field.validate,"field-name":field.name},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}})]:_vm._e(),(field.type === 'radio')?_vm._l((field.options),function(i){return _c('vue-radio',{key:i.value,attrs:{"type":field.inputType,"name":field.name,"value":i.value,"label":i.label,"validate":field.validate},on:{"change":_vm.onUpdate},model:{value:(_vm.clonedModel[field.model]),callback:function ($$v) {_vm.$set(_vm.clonedModel, field.model, $$v)},expression:"clonedModel[field.model]"}})}):_vm._e(),(field.type === 'actions')?_vm._l((field.buttons),function(i,idx){return _c('vue-button',{key:idx,attrs:{"type":i.buttonType,"button-class":i.class},on:{"click":function($event){return _vm.onAction(i.type)}}},[_vm._v("\n          "+_vm._s(i.buttonLabel)+"\n        ")])}):_vm._e()],2)}),1)],1)}
+var FormBuildervue_type_template_id_40ebb58b_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/from-builder/FormBuilder.vue?vue&type=template&id=6797d44c&
+// CONCATENATED MODULE: ./src/components/from-builder/FormBuilder.vue?vue&type=template&id=40ebb58b&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
@@ -10520,8 +10521,6 @@ function cloneShallow(obj) {
 }
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/from-builder/FormBuilder.vue?vue&type=script&lang=js&
 
-//
-//
 //
 //
 //
@@ -10726,8 +10725,8 @@ function cloneShallow(obj) {
 
 var FormBuilder_component = normalizeComponent(
   from_builder_FormBuildervue_type_script_lang_js_,
-  FormBuildervue_type_template_id_6797d44c_render,
-  FormBuildervue_type_template_id_6797d44c_staticRenderFns,
+  FormBuildervue_type_template_id_40ebb58b_render,
+  FormBuildervue_type_template_id_40ebb58b_staticRenderFns,
   false,
   null,
   null,
