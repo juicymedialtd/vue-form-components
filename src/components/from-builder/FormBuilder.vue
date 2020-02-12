@@ -7,22 +7,18 @@
       :label-width="options.labelWidth"
       data-vv-scope="form-1"
     >
-      <vue-form-item
-        v-for="(field, index) in schema.fields"
-        :key="field.label + index"
-        :item-id="generateId(field.label + index)"
-        :label="field.label"
-        :field="field.model"
-        :class="field.class"
-      >
-        <!-- Input -->
-        <template
-          v-if="field.type === 'input'"
+      <ValidationObserver>
+        <vue-form-item
+          v-for="(field, index) in schema.fields"
+          :key="field.label + index"
+          :item-id="generateId(field.label + index)"
+          :label="field.label"
+          :field="field.model"
+          :class="field.class"
         >
-          <ValidationProvider
-            v-slot="{errors}"
-            :name="field.name"
-            :rules="field.validate"
+          <!-- Input -->
+          <template
+            v-if="field.type === 'input'"
           >
             <vue-input
               :key="field.name + index"
@@ -34,23 +30,12 @@
               :readonly="field.readonly"
               :placeholder="field.placeholder"
               :disabled="field.disabled"
+              :validate="field.validate"
               @input="onUpdate"
             />
-            <span
-              v-if="errors.length"
-              class="vue-form__item-error"
-            >
-              {{ errors[0] }}
-            </span>
-          </ValidationProvider>
-        </template>
-        <!-- Select -->
-        <template v-if="field.type === 'select'">
-          <ValidationProvider
-            v-slot="{errors}"
-            :name="field.name"
-            :rules="field.validate"
-          >
+          </template>
+          <!-- Select -->
+          <template v-if="field.type === 'select'">
             <vue-select
               v-model="clonedModel[field.model]"
               :item-id="generateId(field.label + index)"
@@ -58,6 +43,7 @@
               :name="field.name"
               :placeholder="field.placeholder"
               :multiple="Array.isArray(clonedModel[field.model])"
+              :validate="field.validate"
               @change="onUpdate"
             >
               <vue-option
@@ -67,21 +53,9 @@
                 :label="i.label"
               />
             </vue-select>
-            <span
-              v-if="errors.length"
-              class="vue-form__item-error"
-            >
-              {{ errors[0] }}
-            </span>
-          </ValidationProvider>
-        </template>
-        <!-- Checkbox -->
-        <template v-if="field.type === 'checkbox'">
-          <ValidationProvider
-            v-slot="{errors}"
-            :name="field.name"
-            :rules="field.validate"
-          >
+          </template>
+          <!-- Checkbox -->
+          <template v-if="field.type === 'checkbox'">
             <vue-checkbox-group
               v-if="Array.isArray(clonedModel[field.model])"
               v-model="clonedModel[field.model]"
@@ -94,6 +68,8 @@
                 :type="field.inputType"
                 :value="i.value"
                 :label="i.label"
+                :field-name="field.name"
+                :validate="field.validate"
               />
             </vue-checkbox-group>
             <vue-checkbox
@@ -102,23 +78,13 @@
               :type="field.inputType"
               :name="field.name"
               :label="field.checkboxLabel"
+              :validate="field.validate"
+              :field-name="field.name"
               @change="onUpdate"
             />
-            <span
-              v-if="errors.length"
-              class="vue-form__item-error"
-            >
-              {{ errors[0] }}
-            </span>
-          </ValidationProvider>
-        </template>
-        <!-- Radio -->
-        <template v-if="field.type === 'radio'">
-          <ValidationProvider
-            v-slot="{errors}"
-            :name="field.name"
-            :rules="field.validate"
-          >
+          </template>
+          <!-- Radio -->
+          <template v-if="field.type === 'radio'">
             <vue-radio
               v-for="i in field.options"
               :key="i.value"
@@ -127,29 +93,24 @@
               :name="field.name"
               :value="i.value"
               :label="i.label"
+              :validate="field.validate"
               @change="onUpdate"
             />
-            <span
-              v-if="errors.length"
-              class="vue-form__item-error"
+          </template>
+          <!-- Actions -->
+          <template v-if="field.type === 'actions'">
+            <vue-button
+              v-for="(i, idx) in field.buttons"
+              :key="idx"
+              :type="i.buttonType"
+              :button-class="i.class"
+              @click="onAction(i.type)"
             >
-              {{ errors[0] }}
-            </span>
-          </ValidationProvider>
-        </template>
-        <!-- Actions -->
-        <template v-if="field.type === 'actions'">
-          <vue-button
-            v-for="(i, idx) in field.buttons"
-            :key="idx"
-            :type="i.buttonType"
-            :button-class="i.class"
-            @click="onAction(i.type)"
-          >
-            {{ i.buttonLabel }}
-          </vue-button>
-        </template>
-      </vue-form-item>
+              {{ i.buttonLabel }}
+            </vue-button>
+          </template>
+        </vue-form-item>
+      </ValidationObserver>
     </vue-form>
   </div>
 </template>

@@ -8,15 +8,29 @@
       }"
       class="vue-checkbox"
     >
-      <input
-        :id="`vue-checkbox-${_uid}`"
-        :checked="isChecked"
-        :name="name"
-        :disabled="disabled"
-        :value="value"
-        type="checkbox"
-        @change="onChange"
+      <ValidationProvider
+        v-slot="{errors}"
+        mode="lazy"
+        :name="fieldName"
+        :rules="validate"
       >
+
+        <input
+          :id="`vue-checkbox-${_uid}`"
+          :checked="isChecked"
+          :name="name"
+          :disabled="disabled"
+          :value="value"
+          type="checkbox"
+          @change="onChange"
+        >
+        <span
+          v-if="errors.length"
+          class="vue-form__item-error"
+        >
+          {{ errors[0] }}
+        </span>
+      </ValidationProvider>
       <div class="vue-checkbox__inner">
         <i
           v-if="isChecked"
@@ -70,6 +84,17 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    validate: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {}
+      }
+    },
+    fieldName: {
+      type: String,
+      default: ''
     }
   },
 
@@ -118,82 +143,97 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../scss/variables';
-@import '../../scss/mixins';
-@import '../../scss/fonts';
+  @import '../../scss/variables';
+  @import '../../scss/mixins';
+  @import '../../scss/fonts';
 
-.vue-checkbox {
-  $r: &;
-  font-size: 14px;
-  cursor: pointer;
-  display: inline-table;
-  color: $color-text-regular;
-  + #{$r} {
-    margin-left: 10px;
-  }
-  &--checked {
-    color: $color-primary;
-    #{$r}__inner {
-      background-color: $color-primary;
-      border-color: $color-primary;
+  .vue-checkbox {
+    $r: &;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-table;
+    color: $color-text-regular;
+
+    + #{$r} {
+      margin-left: 10px;
     }
-    &#{$r}--bordered {
-      border-color: $color-primary;
-    }
-    &#{$r}--disabled {
+
+    &--checked {
+      color: $color-primary;
+
       #{$r}__inner {
-        border-color: $color-grey-dark;
+        background-color: $color-primary;
+        border-color: $color-primary;
       }
-      i {
+
+      &#{$r}--bordered {
+        border-color: $color-primary;
+      }
+
+      &#{$r}--disabled {
+        #{$r}__inner {
+          border-color: $color-grey-dark;
+        }
+
+        i {
+          color: $color-grey-dark;
+        }
+      }
+    }
+
+    &--disabled {
+      cursor: no-drop;
+
+      #{$r}__inner {
+        background-color: $color-grey-light;
+        cursor: no-drop;
+      }
+
+      #{$r}__label {
         color: $color-grey-dark;
       }
     }
-  }
-  &--disabled {
-    cursor: no-drop;
-    #{$r}__inner {
-      background-color: $color-grey-light;
-      cursor: no-drop;
+
+    &--bordered {
+      border: $input-border;
+      border-radius: $input-border-radius;
+      padding: $input-inner-padding;
+      line-height: calc(#{$input-height} - 2px);
+      box-sizing: content-box;
+      transition: all 0.2s;
     }
-    #{$r}__label {
-      color: $color-grey-dark;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &__label {
+      display: table-cell;
+      width: 100%;
+      line-height: 1.3em;
+    }
+
+    &__inner {
+      top: 3px;
+      width: 14px;
+      height: 14px;
+      margin-right: 5px;
+      border: $input-border;
+      border-radius: 3px;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 10px;
+
+      i {
+        position: absolute;
+        color: #fff;
+        left: 0;
+      }
+    }
+
+    input {
+      display: none;
     }
   }
-  &--bordered {
-    border: $input-border;
-    border-radius: $input-border-radius;
-    padding: $input-inner-padding;
-    line-height: calc(#{$input-height} - 2px);
-    box-sizing: content-box;
-    transition: all 0.2s;
-  }
-  &:last-of-type {
-    margin-right: 0;
-  }
-  &__label {
-    display: table-cell;
-    width: 100%;
-    line-height: 1.3em;
-  }
-  &__inner {
-    top: 3px;
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    border: $input-border;
-    border-radius: 3px;
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    margin-right: 10px;
-    i {
-      position: absolute;
-      color: #fff;
-      left: 0;
-    }
-  }
-  input {
-    display: none;
-  }
-}
 </style>

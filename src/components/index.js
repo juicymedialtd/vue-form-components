@@ -7,7 +7,7 @@ import Select from './select/Select.vue'
 import Option from './select/Option.vue'
 import Form from './form/Form.vue'
 import FormItem from './form/FormItem.vue'
-import { ValidationProvider, extend } from 'vee-validate'
+import { ValidationProvider, extend, ValidationObserver } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
 import FormBuilder from './from-builder/FormBuilder.vue'
 
@@ -31,6 +31,7 @@ export default {
     })
 
     Vue.component('ValidationProvider', ValidationProvider)
+    Vue.component('ValidationObserver', ValidationObserver)
 
     components.forEach(component => {
       Vue.component(component.name, component)

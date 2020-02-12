@@ -13,53 +13,66 @@
       v-if="$slots.prefix && type !== 'textarea'"
       class="vue-input__prefix"
     >
-      <slot name="prefix"/>
+      <slot name="prefix" />
     </div>
     <div
       v-if="$slots.suffix && type !== 'textarea'"
       class="vue-input__suffix"
     >
-      <slot name="suffix"/>
+      <slot name="suffix" />
     </div>
     <div
       v-if="$slots.prepend && type !== 'textarea'"
       class="vue-input__prepend"
     >
-      <slot name="prepend"/>
+      <slot name="prepend" />
     </div>
-    <input
-      v-if="type !== 'textarea'"
-      :id="itemId"
+    <ValidationProvider
+      v-slot="{errors}"
+      mode="lazy"
       :name="name"
-      :type="type"
-      :value="value"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
-      :max="max"
-      :min="min"
-      :autocomplete="[ autocomplete ? 'off' : 'on' ]"
-      class="vue-input__inner"
-      @input="onInput"
+      :rules="validate"
     >
-    <textarea
-      v-else
-      :id="itemId"
-      :name="name"
-      :type="type"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
-      :value="value"
-      :rows="rows"
-      class="vue-textarea__inner"
-      @input="onInput"
-    />
+      <input
+        v-if="type !== 'textarea'"
+        :id="itemId"
+        :name="name"
+        :type="type"
+        :value="value"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
+        :max="max"
+        :min="min"
+        :autocomplete="[ autocomplete ? 'off' : 'on' ]"
+        class="vue-input__inner"
+        @input="onInput"
+      >
+      <textarea
+        v-else
+        :id="itemId"
+        :name="name"
+        :type="type"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
+        :value="value"
+        :rows="rows"
+        class="vue-textarea__inner"
+        @input="onInput"
+      />
+      <span
+        v-if="errors.length"
+        class="vue-form__item-error"
+      >
+        {{ errors[0] }}
+      </span>
+    </ValidationProvider>
     <div
       v-if="this.$slots.append && type !== 'textarea'"
       class="vue-input__append"
     >
-      <slot name="append"/>
+      <slot name="append" />
     </div>
   </div>
 </template>
@@ -127,6 +140,13 @@ export default {
     rows: {
       type: Number,
       default: 3
+    },
+    validate: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {}
+      }
     }
   },
 
