@@ -47,6 +47,7 @@
         :autocomplete="[ autocomplete ? 'off' : 'on' ]"
         class="vue-input__inner"
         @input="onInput"
+        @blur="onBlur"
       >
       <textarea
         v-else
@@ -60,6 +61,7 @@
         :rows="rows"
         class="vue-textarea__inner"
         @input="onInput"
+        @blur="onBlur"
       />
       <span
         v-if="errors.length"
@@ -153,6 +155,10 @@ export default {
   methods: {
     onInput (e) {
       this.$emit('input', e.target.value)
+    },
+
+    onBlur (e) {
+      this.$emit('blur', e.target.value)
     }
   }
 }

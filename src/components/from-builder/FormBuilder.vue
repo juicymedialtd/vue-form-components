@@ -31,6 +31,7 @@
             :disabled="field.disabled"
             :validate="field.validate"
             @input="onUpdate"
+            @blur="onBlur"
           />
         </template>
         <!-- Select -->
@@ -188,6 +189,9 @@ export default {
     },
     onUpdate () {
       this.$emit('update', this.clonedModel)
+    },
+    onBlur () {
+      this.$emit('blur', this.clonedModel)
     },
     onAction (e) {
       this.$emit('action', { type: e, form: this.$refs.form })
