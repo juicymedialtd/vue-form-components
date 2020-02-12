@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "popper.js": "^1.14.4",
-    "vee-validate": "^2.2.0",
+    "vee-validate": "^3.2.4",
     "vue": "^2.6.0",
     "vue-router": "^3.0.1"
   },

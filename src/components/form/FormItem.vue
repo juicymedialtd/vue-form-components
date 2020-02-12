@@ -12,14 +12,6 @@
     </label>
     <div class="vue-form__item-content">
       <slot />
-      <transition name="form-slide-fade">
-        <div
-          v-if="showErrorMsg"
-          class="vue-form__item-error"
-        >
-          {{ showErrorMsg }}
-        </div>
-      </transition>
     </div>
   </div>
 </template>
@@ -43,17 +35,6 @@ export default {
     field: {
       type: String,
       default: ''
-    }
-  },
-
-  computed: {
-    showErrorMsg () {
-      let msg
-      if (this.errors.items.length) {
-        const item = this.errors.items.find(i => i.field === this.field)
-        if (item) msg = item.msg
-      }
-      return msg
     }
   }
 }

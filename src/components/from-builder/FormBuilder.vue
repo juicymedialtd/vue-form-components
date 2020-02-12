@@ -19,80 +19,123 @@
         <template
           v-if="field.type === 'input'"
         >
-          <vue-input
-            :key="field.name + index"
-            :ref="field.name"
-            v-model="clonedModel[field.model]"
-            v-validate="field.validate"
-            :item-id="generateId(field.label + index)"
-            :type="field.inputType"
+          <ValidationProvider
+            v-slot="{errors}"
             :name="field.name"
-            :readonly="field.readonly"
-            :placeholder="field.placeholder"
-            :disabled="field.disabled"
-            @input="onUpdate"
-          />
+            :rules="field.validate"
+          >
+            <vue-input
+              :key="field.name + index"
+              :ref="field.name"
+              v-model="clonedModel[field.model]"
+              :item-id="generateId(field.label + index)"
+              :type="field.inputType"
+              :name="field.name"
+              :readonly="field.readonly"
+              :placeholder="field.placeholder"
+              :disabled="field.disabled"
+              @input="onUpdate"
+            />
+            <span
+              v-if="errors.length"
+              class="vue-form__item-error"
+            >
+              {{ errors[0] }}
+            </span>
+          </ValidationProvider>
         </template>
         <!-- Select -->
         <template v-if="field.type === 'select'">
-          <vue-select
-            v-model="clonedModel[field.model]"
-            v-validate="field.validate"
-            :item-id="generateId(field.label + index)"
-            :data="field.options"
+          <ValidationProvider
+            v-slot="{errors}"
             :name="field.name"
-            :placeholder="field.placeholder"
-            :multiple="Array.isArray(clonedModel[field.model])"
-            @change="onUpdate"
+            :rules="field.validate"
           >
-            <vue-option
-              v-for="i in field.options"
-              :key="i.value"
-              :value="i.value"
-              :label="i.label"
-            />
-          </vue-select>
+            <vue-select
+              v-model="clonedModel[field.model]"
+              :item-id="generateId(field.label + index)"
+              :data="field.options"
+              :name="field.name"
+              :placeholder="field.placeholder"
+              :multiple="Array.isArray(clonedModel[field.model])"
+              @change="onUpdate"
+            >
+              <vue-option
+                v-for="i in field.options"
+                :key="i.value"
+                :value="i.value"
+                :label="i.label"
+              />
+            </vue-select>
+            <span
+              v-if="errors.length"
+              class="vue-form__item-error"
+            >
+              {{ errors[0] }}
+            </span>
+          </ValidationProvider>
         </template>
         <!-- Checkbox -->
         <template v-if="field.type === 'checkbox'">
-          <vue-checkbox-group
-            v-if="Array.isArray(clonedModel[field.model])"
-            v-model="clonedModel[field.model]"
-            v-validate="field.validate"
+          <ValidationProvider
+            v-slot="{errors}"
             :name="field.name"
-            @change="onUpdate"
+            :rules="field.validate"
           >
+            <vue-checkbox-group
+              v-if="Array.isArray(clonedModel[field.model])"
+              v-model="clonedModel[field.model]"
+              :name="field.name"
+              @change="onUpdate"
+            >
+              <vue-checkbox
+                v-for="i in field.options"
+                :key="i.value"
+                :type="field.inputType"
+                :value="i.value"
+                :label="i.label"
+              />
+            </vue-checkbox-group>
             <vue-checkbox
-              v-for="i in field.options"
-              :key="i.value"
+              v-else
+              v-model="clonedModel[field.model]"
               :type="field.inputType"
-              :value="i.value"
-              :label="i.label"
+              :name="field.name"
+              :label="field.checkboxLabel"
+              @change="onUpdate"
             />
-          </vue-checkbox-group>
-          <vue-checkbox
-            v-else
-            v-model="clonedModel[field.model]"
-            v-validate="field.validate"
-            :type="field.inputType"
-            :name="field.name"
-            :label="field.checkboxLabel"
-            @change="onUpdate"
-          />
+            <span
+              v-if="errors.length"
+              class="vue-form__item-error"
+            >
+              {{ errors[0] }}
+            </span>
+          </ValidationProvider>
         </template>
         <!-- Radio -->
         <template v-if="field.type === 'radio'">
-          <vue-radio
-            v-for="i in field.options"
-            :key="i.value"
-            v-model="clonedModel[field.model]"
-            v-validate="field.validate"
-            :type="field.inputType"
+          <ValidationProvider
+            v-slot="{errors}"
             :name="field.name"
-            :value="i.value"
-            :label="i.label"
-            @change="onUpdate"
-          />
+            :rules="field.validate"
+          >
+            <vue-radio
+              v-for="i in field.options"
+              :key="i.value"
+              v-model="clonedModel[field.model]"
+              :type="field.inputType"
+              :name="field.name"
+              :value="i.value"
+              :label="i.label"
+              @change="onUpdate"
+            />
+            <span
+              v-if="errors.length"
+              class="vue-form__item-error"
+            >
+              {{ errors[0] }}
+            </span>
+          </ValidationProvider>
         </template>
         <!-- Actions -->
         <template v-if="field.type === 'actions'">
