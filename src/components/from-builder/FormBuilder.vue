@@ -10,11 +10,12 @@
       <div
         v-for="(group, groupIndex) in schema"
         :key="groupIndex"
-        class="vue-form-builder-section"
+        class="vue-form-group"
       >
         <tag
-          v-if="group.heading && group.headingTag"
           :is="group.headingTag"
+          v-if="group.heading && group.headingTag"
+          class="vue-form-group-heading"
         >
           {{ group.heading }}
         </tag>
