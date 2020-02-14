@@ -7,109 +7,118 @@
       :label-width="options.labelWidth"
       data-vv-scope="form-1"
     >
-      <vue-form-item
-        v-for="(field, index) in schema.fields"
-        :key="field.label + index"
-        :item-id="generateId(field.label + index)"
-        :label="field.label"
-        :field="field.model"
-        :class="field.class"
+      <div
+        v-for="(group, groupIndex) in schema"
+        :key="groupIndex"
+        class="vue-form-builder-section"
       >
-        <!-- Input -->
-        <template
-          v-if="field.type === 'input'"
+        <tag :is="group.headingTag">
+          {{ group.heading }}
+        </tag>
+        <vue-form-item
+          v-for="(field, index) in group.fields"
+          :key="field.label + index"
+          :item-id="generateId(field.label + index)"
+          :label="field.label"
+          :field="field.model"
+          :class="field.class"
         >
-          <vue-input
-            :key="field.name + index"
-            :ref="field.name"
-            v-model="clonedModel[field.model]"
-            :item-id="generateId(field.label + index)"
-            :type="field.inputType"
-            :name="field.name"
-            :readonly="field.readonly"
-            :placeholder="field.placeholder"
-            :disabled="field.disabled"
-            :validate="field.validate"
-            @input="onUpdate"
-            @blur="onBlur"
-          />
-        </template>
-        <!-- Select -->
-        <template v-if="field.type === 'select'">
-          <vue-select
-            v-model="clonedModel[field.model]"
-            :item-id="generateId(field.label + index)"
-            :data="field.options"
-            :name="field.name"
-            :placeholder="field.placeholder"
-            :multiple="Array.isArray(clonedModel[field.model])"
-            :validate="field.validate"
-            @change="onUpdate"
+          <!-- Input -->
+          <template
+            v-if="field.type === 'input'"
           >
-            <vue-option
-              v-for="i in field.options"
-              :key="i.value"
-              :value="i.value"
-              :label="i.label"
-            />
-          </vue-select>
-        </template>
-        <!-- Checkbox -->
-        <template v-if="field.type === 'checkbox'">
-          <vue-checkbox-group
-            v-if="Array.isArray(clonedModel[field.model])"
-            v-model="clonedModel[field.model]"
-            :name="field.name"
-            @change="onUpdate"
-          >
-            <vue-checkbox
-              v-for="i in field.options"
-              :key="i.value"
+            <vue-input
+              :key="field.name + index"
+              :ref="field.name"
+              v-model="clonedModel[field.model]"
+              :item-id="generateId(field.label + index)"
               :type="field.inputType"
+              :name="field.name"
+              :readonly="field.readonly"
+              :placeholder="field.placeholder"
+              :disabled="field.disabled"
+              :validate="field.validate"
+              @input="onUpdate"
+              @blur="onBlur"
+            />
+          </template>
+          <!-- Select -->
+          <template v-if="field.type === 'select'">
+            <vue-select
+              v-model="clonedModel[field.model]"
+              :item-id="generateId(field.label + index)"
+              :data="field.options"
+              :name="field.name"
+              :placeholder="field.placeholder"
+              :multiple="Array.isArray(clonedModel[field.model])"
+              :validate="field.validate"
+              @change="onUpdate"
+            >
+              <vue-option
+                v-for="i in field.options"
+                :key="i.value"
+                :value="i.value"
+                :label="i.label"
+              />
+            </vue-select>
+          </template>
+          <!-- Checkbox -->
+          <template v-if="field.type === 'checkbox'">
+            <vue-checkbox-group
+              v-if="Array.isArray(clonedModel[field.model])"
+              v-model="clonedModel[field.model]"
+              :name="field.name"
+              @change="onUpdate"
+            >
+              <vue-checkbox
+                v-for="i in field.options"
+                :key="i.value"
+                :type="field.inputType"
+                :value="i.value"
+                :label="i.label"
+                :field-name="field.name"
+                :validate="field.validate"
+              />
+            </vue-checkbox-group>
+            <vue-checkbox
+              v-else
+              v-model="clonedModel[field.model]"
+              :type="field.inputType"
+              :name="field.name"
+              :label="field.checkboxLabel"
+              :validate="field.validate"
+              :field-name="field.name"
+              @change="onUpdate"
+            />
+          </template>
+          <!-- Radio -->
+          <template v-if="field.type === 'radio'">
+            <vue-radio
+              v-for="i in field.options"
+              :key="i.value"
+              v-model="clonedModel[field.model]"
+              :type="field.inputType"
+              :name="field.name"
               :value="i.value"
               :label="i.label"
-              :field-name="field.name"
               :validate="field.validate"
+              @change="onUpdate"
             />
-          </vue-checkbox-group>
-          <vue-checkbox
-            v-else
-            v-model="clonedModel[field.model]"
-            :type="field.inputType"
-            :name="field.name"
-            :label="field.checkboxLabel"
-            :validate="field.validate"
-            :field-name="field.name"
-            @change="onUpdate"
-          />
-        </template>
-        <!-- Radio -->
-        <template v-if="field.type === 'radio'">
-          <vue-radio
-            v-for="i in field.options"
-            :key="i.value"
-            v-model="clonedModel[field.model]"
-            :type="field.inputType"
-            :name="field.name"
-            :value="i.value"
-            :label="i.label"
-            :validate="field.validate"
-            @change="onUpdate"
-          />
-        </template>
-        <!-- Actions -->
-        <template v-if="field.type === 'actions'">
-          <vue-button
-            v-for="(i, idx) in field.buttons"
-            :key="idx"
-            :type="i.buttonType"
-            :button-class="i.class"
-            @click="onAction(i.type)"
-          >
-            {{ i.buttonLabel }}
-          </vue-button>
-        </template>
-      </vue-form-item>
+          </template>
+          <!-- Actions -->
+          <template v-if="field.type === 'actions'">
+            <vue-button
+              v-for="(i, idx) in field.buttons"
+              :key="idx"
+              :type="i.buttonType"
+              :button-class="i.class"
+              @click="onAction(i.type)"
+            >
+              {{ i.buttonLabel }}
+            </vue-button>
+          </template>
+        </vue-form-item>
+      </div>
     </vue-form>
   </div>
 </template>
@@ -153,7 +162,7 @@ export default {
       }
     },
     schema: {
-      type: Object,
+      type: Array,
       default: () => {
       }
     },

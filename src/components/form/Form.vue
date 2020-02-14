@@ -9,7 +9,7 @@
     }"
     class="vue-form"
   >
-    <slot/>
+    <slot />
   </ValidationObserver>
 </template>
 
