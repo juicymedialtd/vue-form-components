@@ -12,7 +12,10 @@
         :key="groupIndex"
         class="vue-form-builder-section"
       >
-        <tag :is="group.headingTag">
+        <tag
+          v-if="group.heading && group.headingTag"
+          :is="group.headingTag"
+        >
           {{ group.heading }}
         </tag>
         <vue-form-item

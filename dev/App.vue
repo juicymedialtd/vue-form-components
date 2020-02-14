@@ -64,8 +64,6 @@ export default {
         ]
       },
       {
-        heading: 'Call 2',
-        headingTag: 'h3',
         fields: [
           {
             type: 'input',
